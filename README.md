@@ -16,3 +16,7 @@ The main function can be updated to have records compatible with your model and 
 model out by running the main function locally, and does not require deploying to the modelop engine to run.  Complete a
 successful run of that locally, and then deploy the finished model to a modelop engine, create a snapshot, and run a
 simple batch scoring job with the multiple input streams.
+
+Please keep in mind that this example assumes a balanced stream of inputs if run in batch mode.  You must have the same
+number of records in each input file to receive a valid result or it will not complete as it needs records from all of
+streams to complete each scoring request.
