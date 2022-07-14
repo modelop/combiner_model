@@ -37,24 +37,38 @@ def action(data, slot_number):
 # of your model without having to run on the engine
 #
 def main():
-    if next(action({"foo": 1}, 0)) is not None:
+    try:
+        next(action({"foo": 1}, 0))
         print("Error received value back on first slot")
-
-    if next(action({"bar": "Strvalue"}, 2)) is not None:
+    except StopIteration:
+        pass
+    try:
+        next(action({"bar": "Strvalue"}, 2))
         print("Error received value back on second slot")
+    except StopIteration:
+        pass
 
-    print(json.dumps(next(action({"objectValue": {"foo" : 1, "bar": False}}, 4)), indent=4))
+    print(json.dumps(next(action({"objectValue": {"foo": 1, "bar": False}}, 4)), indent=4))
 
-    if next(action({"foo": 1}, 0)) is not None:
+    try:
+        next(action({"foo": 1}, 0))
         print("Error received value back on first slot")
+    except StopIteration:
+        pass
 
-    if next(action({"bar" : "This value should not be present"}, 0)) is not None:
+    try:
+        next(action({"bar": "This value should not be present"}, 0))
         print("Error received value back on first slot")
+    except StopIteration:
+        pass
 
-    if next(action({"bar": "Strvalue"}, 2)) is not None:
+    try:
+        next(action({"bar": "Strvalue"}, 2))
         print("Error received value back on second slot")
+    except StopIteration:
+        pass
 
-    print(json.dumps(next(action({"objectValue": {"foo" : 1, "bar": False}}, 4)), indent=4))
+    print(json.dumps(next(action({"objectValue": {"foo": 1, "bar": False}}, 4)), indent=4))
 
 
 if __name__ == '__main__':
