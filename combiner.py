@@ -23,7 +23,7 @@ def action(data, slot_number):
     RECORD[int(slot_number / 2)].append(data)
 
     if not RECORD[0] or not RECORD[1] or not RECORD[2]:
-        yield None
+        return
     else:
         record_to_process = RECORD[0].pop(0)
         record_to_process.update(RECORD[1].pop(0))
